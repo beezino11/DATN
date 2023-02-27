@@ -1,0 +1,34 @@
+package com.wru.application.service;
+
+import com.wru.application.model.request.CreatePromotionRequest;
+import com.wru.application.entity.Promotion;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public interface PromotionService {
+
+    Page<Promotion> adminGetListPromotion(String code, String name, String publish, String active, int page);
+
+    Promotion createPromotion(CreatePromotionRequest createPromotionRequest);
+
+    void updatePromotion(CreatePromotionRequest createPromotionRequest, long id);
+
+    void deletePromotion(long id);
+
+    Promotion findPromotionById(long id);
+
+    //Kiểm tra có khuyến mại
+    Promotion checkPublicPromotion();
+
+    //Tính giá sản phẩm khi có khuyến mại
+    long calculatePromotionPrice(long price, Promotion promotion);
+
+    //Lấy khuyến mại theo mã code
+    Promotion checkPromotion(String code);
+
+    //Lấy khuyến mại đang chạy và còn thời hạn
+    List<Promotion> getAllValidPromotion();
+}
