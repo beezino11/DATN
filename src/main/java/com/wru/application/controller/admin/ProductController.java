@@ -50,8 +50,6 @@ public class ProductController {
     @Autowired
     private ImageService imageService;
 
-    @Autowired
-    private CertificationService certificationService;
 
     @GetMapping("/admin/products")
     public String homePages(Model model,
@@ -68,11 +66,11 @@ public class ProductController {
         //Lấy danh sách danh mục
         List<Category> categories = categoryService.getListCategories();
         model.addAttribute("categories", categories);
-        //Lấy danh sách chứng nhận
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        //Lấy danh sách chứng nhận
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
         //Lấy danh sách sản phẩm
-        Page<Product> products = productService.adminGetListProduct(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProduct(id, name, category, brand, page);
         model.addAttribute("products", products.getContent());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", products.getPageable().getPageNumber() + 1);
@@ -95,11 +93,11 @@ public class ProductController {
         //Lấy danh sách danh mục
         List<Category> categories = categoryService.getListCategories();
         model.addAttribute("categories", categories);
-        //Lấy danh sách chứng nhận
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        //Lấy danh sách chứng nhận
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
         //Lấy danh sách sản phẩm
-        Page<Product> products = productService.adminGetListProductsSells(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProductsSells(id, name, category, brand, page);
         model.addAttribute("products", products.getContent());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", products.getPageable().getPageNumber() + 1);
@@ -122,11 +120,11 @@ public class ProductController {
         //Lấy danh sách danh mục
         List<Category> categories = categoryService.getListCategories();
         model.addAttribute("categories", categories);
-        //Lấy danh sách chứng nhận
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        //Lấy danh sách chứng nhận
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
         //Lấy danh sách sản phẩm
-        Page<Product> products = productService.adminGetListProductsNotSold(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProductsNotSold(id, name, category, brand, page);
         model.addAttribute("products", products.getContent());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", products.getPageable().getPageNumber() + 1);
@@ -149,11 +147,11 @@ public class ProductController {
         //Lấy danh sách danh mục
         List<Category> categories = categoryService.getListCategories();
         model.addAttribute("categories", categories);
-        //Lấy danh sách chứng nhận
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        //Lấy danh sách chứng nhận
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
         //Lấy danh sách sản phẩm
-        Page<Product> products = productService.adminGetListProductsAboutToExpire(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProductsAboutToExpire(id, name, category, brand, page);
         model.addAttribute("products", products.getContent());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", products.getPageable().getPageNumber() + 1);
@@ -175,9 +173,9 @@ public class ProductController {
         List<Category> categories = categoryService.getListCategories();
         model.addAttribute("categories", categories);
 
-        //Lấy danh sách chứng nhận
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        //Lấy danh sách chứng nhận
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
 
         return "admin/product/create";
     }
@@ -198,9 +196,9 @@ public class ProductController {
         List<Category> categories = categoryService.getListCategories();
         model.addAttribute("categories", categories);
 
-        // Lấy danh sách chứng nhận
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        // Lấy danh sách chứng nhận
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
 
         // Lấy danh sách nhãn hiệu
         List<Brand> brands = brandService.getListBrand();
@@ -214,10 +212,9 @@ public class ProductController {
     public ResponseEntity<Object> getListProducts(@RequestParam(defaultValue = "", required = false) String id,
                                                   @RequestParam(defaultValue = "", required = false) String name,
                                                   @RequestParam(defaultValue = "", required = false) String category,
-                                                  @RequestParam(defaultValue = "", required = false) String certification,
                                                   @RequestParam(defaultValue = "", required = false) String brand,
                                                   @RequestParam(defaultValue = "1", required = false) Integer page) {
-        Page<Product> products = productService.adminGetListProduct(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProduct(id, name, category, brand, page);
         return ResponseEntity.ok(products);
     }
 
@@ -225,10 +222,9 @@ public class ProductController {
     public ResponseEntity<Object> getListProductsSell(@RequestParam(defaultValue = "", required = false) String id,
                                                       @RequestParam(defaultValue = "", required = false) String name,
                                                       @RequestParam(defaultValue = "", required = false) String category,
-                                                      @RequestParam(defaultValue = "", required = false) String certification,
                                                       @RequestParam(defaultValue = "", required = false) String brand,
                                                       @RequestParam(defaultValue = "1", required = false) Integer page) {
-        Page<Product> products = productService.adminGetListProductsSells(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProductsSells(id, name, category, brand, page);
         return ResponseEntity.ok(products);
     }
 
@@ -236,10 +232,9 @@ public class ProductController {
     public ResponseEntity<Object> getListProductsNotSold(@RequestParam(defaultValue = "", required = false) String id,
                                                          @RequestParam(defaultValue = "", required = false) String name,
                                                          @RequestParam(defaultValue = "", required = false) String category,
-                                                         @RequestParam(defaultValue = "", required = false) String certification,
                                                          @RequestParam(defaultValue = "", required = false) String brand,
                                                          @RequestParam(defaultValue = "1", required = false) Integer page) {
-        Page<Product> products = productService.adminGetListProductsNotSold(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProductsNotSold(id, name, category, brand, page);
         return ResponseEntity.ok(products);
     }
 
@@ -247,10 +242,9 @@ public class ProductController {
     public ResponseEntity<Object> getListProductsAboutToExpire(@RequestParam(defaultValue = "", required = false) String id,
                                                                @RequestParam(defaultValue = "", required = false) String name,
                                                                @RequestParam(defaultValue = "", required = false) String category,
-                                                               @RequestParam(defaultValue = "", required = false) String certification,
                                                                @RequestParam(defaultValue = "", required = false) String brand,
                                                                @RequestParam(defaultValue = "1", required = false) Integer page) {
-        Page<Product> products = productService.adminGetListProductsAboutToExpire(id, name, category, certification, brand, page);
+        Page<Product> products = productService.adminGetListProductsAboutToExpire(id, name, category, brand, page);
         return ResponseEntity.ok(products);
     }
 

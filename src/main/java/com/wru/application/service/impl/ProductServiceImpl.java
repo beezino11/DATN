@@ -53,43 +53,43 @@ public class ProductServiceImpl implements ProductService {
     private OrderRepository orderRepository;
 
     @Override
-    public Page<Product> adminGetListProduct(String id, String name, String category, String certification, String brand, Integer page) {
+    public Page<Product> adminGetListProduct(String id, String name, String category, String brand, Integer page) {
         page--;
         if (page < 0) {
             page = 0;
         }
         Pageable pageable = PageRequest.of(page, LIMIT_PRODUCT, Sort.by("created_at").descending());
-        return productRepository.adminGetListProducts(id, name, category, certification, brand, pageable);
+        return productRepository.adminGetListProducts(id, name, category, brand, pageable);
     }
 
     @Override
-    public Page<Product> adminGetListProductsSells(String id, String name, String category, String certification, String brand, Integer page) {
+    public Page<Product> adminGetListProductsSells(String id, String name, String category, String brand, Integer page) {
         page--;
         if (page < 0) {
             page = 0;
         }
         Pageable pageable = PageRequest.of(page, LIMIT_PRODUCT, Sort.by("created_at").descending());
-        return productRepository.adminGetListProductsSells(id, name, category, certification, brand, pageable);
+        return productRepository.adminGetListProductsSells(id, name, category, brand, pageable);
     }
 
     @Override
-    public Page<Product> adminGetListProductsNotSold(String id, String name, String category, String certification, String brand, Integer page) {
+    public Page<Product> adminGetListProductsNotSold(String id, String name, String category, String brand, Integer page) {
         page--;
         if (page < 0) {
             page = 0;
         }
         Pageable pageable = PageRequest.of(page, LIMIT_PRODUCT, Sort.by("created_at").descending());
-        return productRepository.adminGetListProductsNotSold(id, name, category, certification, brand, pageable);
+        return productRepository.adminGetListProductsNotSold(id, name, category,brand, pageable);
     }
 
     @Override
-    public Page<Product> adminGetListProductsAboutToExpire(String id, String name, String category, String certification, String brand, Integer page) {
+    public Page<Product> adminGetListProductsAboutToExpire(String id, String name, String category, String brand, Integer page) {
         page--;
         if (page < 0) {
             page = 0;
         }
         Pageable pageable = PageRequest.of(page, LIMIT_PRODUCT, Sort.by("created_at").descending());
-        return productRepository.adminGetListProductsAboutToExpire(id, name, category, certification, brand, pageable);
+        return productRepository.adminGetListProductsAboutToExpire(id, name, category, brand, pageable);
     }
 
     @Override
@@ -99,10 +99,10 @@ public class ProductServiceImpl implements ProductService {
             throw new BadRequestException("Thể loại trống!");
         }
 
-        //Kiểm tra có danh muc
-        if (createProductRequest.getCertification_ids().isEmpty()) {
-            throw new BadRequestException("Chứng nhận trống!");
-        }
+//        //Kiểm tra có danh muc
+//        if (createProductRequest.getCertification_ids().isEmpty()) {
+//            throw new BadRequestException("Chứng nhận trống!");
+//        }
 
         //kiểm tra nhãn hiệu
         if (createProductRequest.getBrandId() == null) {
@@ -169,9 +169,9 @@ public class ProductServiceImpl implements ProductService {
             throw new BadRequestException("Nhãn hiệu trống!");
         }
 
-        if (createProductRequest.getCertification_ids().isEmpty()) {
-            throw new BadRequestException("Nhãn hiệu trống!");
-        }
+//        if (createProductRequest.getCertification_ids().isEmpty()) {
+//            throw new BadRequestException("Nhãn hiệu trống!");
+//        }
 
         if (createProductRequest.getDateOfManufacture() == null) {
             throw new BadRequestException("Ngày sản xuất trống!");
@@ -209,13 +209,13 @@ public class ProductServiceImpl implements ProductService {
         }
         result.setCategories(categories);
 
-        ArrayList<Certification> certifications = new ArrayList<>();
-        for (Long id2 : createProductRequest.getCertification_ids()) {
-            Certification certification = new Certification();
-            certification.setId(id2);
-            certifications.add(certification);
-        }
-        result.setCertifications(certifications);
+//        ArrayList<Certification> certifications = new ArrayList<>();
+//        for (Long id2 : createProductRequest.getCertification_ids()) {
+//            Certification certification = new Certification();
+//            certification.setId(id2);
+//            certifications.add(certification);
+//        }
+//        result.setCertifications(certifications);
         result.setId(id);
         result.setModifiedAt(new Timestamp(System.currentTimeMillis()));
         try {
@@ -388,8 +388,8 @@ public class ProductServiceImpl implements ProductService {
         List<ProductInfoDTO> products;
 
         //Nếu không có size
-        products = productRepository.searchProductAllSize(req.getBrands(), req.getCategories(), req.getCertifications(), req.getMinPrice(), req.getMaxPrice(), LIMIT_PRODUCT_SHOP, pageUtil.calculateOffset());
-        totalItems = productRepository.countProductAllSize(req.getBrands(), req.getCategories(), req.getCertifications(), req.getMinPrice(), req.getMaxPrice());
+        products = productRepository.searchProductAllSize(req.getBrands(), req.getCategories(),  req.getMinPrice(), req.getMaxPrice(), LIMIT_PRODUCT_SHOP, pageUtil.calculateOffset());
+        totalItems = productRepository.countProductAllSize(req.getBrands(), req.getCategories(), req.getMinPrice(), req.getMaxPrice());
 
 //        Tính tổng số trang
         int totalPages = pageUtil.calculateTotalPage(totalItems);

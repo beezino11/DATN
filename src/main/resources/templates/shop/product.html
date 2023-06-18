@@ -145,26 +145,26 @@
                         </div><!-- End .collapse -->
                     </div><!-- End .widget -->
 
-                    <div class="widget">
-                        <h3 class="widget-title">
-                            <a data-toggle="collapse" href="#widget-body-7" role="button" aria-expanded="true"
-                               aria-controls="widget-body-7">Chứng nhận sản phẩm</a>
-                        </h3>
+<!--                    <div class="widget">-->
+<!--                        <h3 class="widget-title">-->
+<!--                            <a data-toggle="collapse" href="#widget-body-7" role="button" aria-expanded="true"-->
+<!--                               aria-controls="widget-body-7">Chứng nhận sản phẩm</a>-->
+<!--                        </h3>-->
 
-                        <div class="collapse show" id="widget-body-7">
-                            <div class="widget-body">
-                                <ul class="cat-list">
-                                    <th:block th:each="certification : ${certifications}">
-                                        <li>
-                                            <input class="filter-checkbox check-certification" type="checkbox"
-                                                   th:value="${certification.id}"/>
-                                            <span th:text="${certification.name}"></span>
-                                        </li>
-                                    </th:block>
-                                </ul>
-                            </div><!-- End .widget-body -->
-                        </div><!-- End .collapse -->
-                    </div><!-- End .widget -->
+<!--                        <div class="collapse show" id="widget-body-7">-->
+<!--                            <div class="widget-body">-->
+<!--                                <ul class="cat-list">-->
+<!--                                    <th:block th:each="certification : ${certifications}">-->
+<!--                                        <li>-->
+<!--                                            <input class="filter-checkbox check-certification" type="checkbox"-->
+<!--                                                   th:value="${certification.id}"/>-->
+<!--                                            <span th:text="${certification.name}"></span>-->
+<!--                                        </li>-->
+<!--                                    </th:block>-->
+<!--                                </ul>-->
+<!--                            </div>&lt;!&ndash; End .widget-body &ndash;&gt;-->
+<!--                        </div>&lt;!&ndash; End .collapse &ndash;&gt;-->
+<!--                    </div>&lt;!&ndash; End .widget &ndash;&gt;-->
 
                     <div class="widget">
                         <h3 class="widget-title">
@@ -198,12 +198,10 @@
     <script th:inline="javascript">
         let brandIds = [[${brandIds}]];
         let categoryIds = [[${categoryIds}]];
-        let certificationIds = [[${certificationIds}]];
         let currentPage = [[${currentPage}]];
         let totalPages = [[${totalPages}]];
         let checkedCategories = [];
         let checkedBrands = [];
-        let checkedCertifications = [];
         // let checkedSizes = [];
         let minPrice = 0;
         let maxPrice = 0;
@@ -263,16 +261,6 @@
             }
         });
 
-        $(".check-certification").change(function () {
-            checkedCertifications = $(".check-certification:checked").map(function () {
-                return $(this).val();
-            }).get();
-
-            if (!$(this).hasClass('checkbox-mobile')) {
-                currentPage = 1;
-                searchProduct();
-            }
-        });
 
         $('#apply-price-web').click(function () {
             minPrice = parseInt($('.price-input#from-price').val());
@@ -311,7 +299,7 @@
         })
 
         function searchProduct() {
-            if (checkedCertifications.length > 0 || checkedBrands.length > 0 || checkedCategories.length > 0 || minPrice > 0 || maxPrice > 0) {
+            if (checkedBrands.length > 0 || checkedCategories.length > 0 || minPrice > 0 || maxPrice > 0) {
                 $('.clear-filter')
                     .removeAttr('disabled');
             } else {
@@ -319,9 +307,6 @@
                     .attr('disabled', 'disabled');
             }
 
-            if (checkedCertifications.length == 0) {
-                checkedCertifications = certificationIds;
-            }
             if (checkedBrands.length == 0) {
                 checkedBrands = brandIds;
             }
@@ -334,7 +319,6 @@
             req = {
                 brands: checkedBrands,
                 categories: checkedCategories,
-                certifications: checkedCertifications,
                 min_price: minPrice,
                 max_price: maxPrice,
                 page: currentPage
@@ -421,7 +405,6 @@
 
             $(".clear-filter").click(function () {
                 // checkedSizes = [];
-                checkedCertifications = [];
                 checkedBrands = [];
                 checkedCategories = [];
                 minPrice = 0;

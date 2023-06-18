@@ -79,10 +79,10 @@
                         <!-- End .product-single-carousel -->
                         <span class="prod-full-screen"><i class="icon-plus"></i></span>
                     </div>
-                    <div class="prod-thumbnail owl-dots" id='carousel-custom-dots'>
+                    <div class="prod-thumbnail owl-dots" id='carousel-custom-dots' style="display: flex; justify-content: center">
                         <th:block th:each="img :${product.productImages}">
-                            <div class="owl-dot">
-                                <img th:src="@{${img}}"/>
+                            <div class="owl-dot" style="height:100px; width: 100px">
+                                <img style="height:100%; width: 100%" th:src="@{${img}}"/>
                             </div>
                         </th:block>
                     </div>

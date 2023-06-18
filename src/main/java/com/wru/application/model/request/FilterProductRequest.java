@@ -15,7 +15,7 @@ public class FilterProductRequest {
 
     private List<Long> categories;
 
-    private List<Long> certifications;
+//    private List<Long> certifications;
 
     @JsonProperty("min_price")
     private Long minPrice;

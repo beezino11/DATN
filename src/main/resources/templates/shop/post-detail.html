@@ -48,8 +48,8 @@
                                 th:text="${#dates.format(post.publishedAt, 'MM yyyy')}"></span>
                             <span><i class="icon-user"></i>By <a th:text="${post.createdBy.fullName}"></a></span>
                         </div><!-- End .post-meta -->
-
                         <div class="post-content">
+                            <p th:utext="${post.content}"></p>
                             <p th:utext="${post.description}"></p>
                         </div><!-- End .post-content -->
 
@@ -79,6 +79,7 @@
 <!--                        </div>&lt;!&ndash; End .post-share &ndash;&gt;-->
 
                         <div class="list-comment">
+                            <h4 class="light-title">Bình luận</h4>
                             <th:block th:each="comment : ${post.comments}">
                                 <div class="post-author">
                                     <!--                                    <h3 class="icon-user" th:text="${comment.user.email}"></h3>-->

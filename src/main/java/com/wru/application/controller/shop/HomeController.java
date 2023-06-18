@@ -44,8 +44,6 @@ public class HomeController {
     @Autowired
     private PromotionService promotionService;
 
-    @Autowired
-    private CertificationService certificationService;
 
     @GetMapping
     public String homePage(Model model) {
@@ -96,8 +94,8 @@ public class HomeController {
         model.addAttribute("brands", brands);
 
         //Lấy danh sách nhãn hiệu
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
 
         if (product.getQuantity() > 0) {
             model.addAttribute("canBuy", true);
@@ -161,17 +159,17 @@ public class HomeController {
         }
         model.addAttribute("categoryIds", categoryIds);
 
-        //Lấy danh sách danh mục
-        List<Certification> certifications = certificationService.getListCertification();
-        model.addAttribute("certifications", certifications);
-        List<Long> certificationIds = new ArrayList<>();
-        for (Certification certification : certifications) {
-            certificationIds.add(certification.getId());
-        }
-        model.addAttribute("certificationIds", certificationIds);
+//        //Lấy danh sách danh mục
+//        List<Certification> certifications = certificationService.getListCertification();
+//        model.addAttribute("certifications", certifications);
+//        List<Long> certificationIds = new ArrayList<>();
+//        for (Certification certification : certifications) {
+//            certificationIds.add(certification.getId());
+//        }
+//        model.addAttribute("certificationIds", certificationIds);
 
         //Lấy danh sách sản phẩm
-        FilterProductRequest req = new FilterProductRequest(brandIds, categoryIds, certificationIds, (long) 0, Long.MAX_VALUE, 1);
+        FilterProductRequest req = new FilterProductRequest(brandIds, categoryIds, (long) 0, Long.MAX_VALUE, 1);
         PageableDTO result = productService.filterProduct(req);
         model.addAttribute("totalPages", result.getTotalPages());
         model.addAttribute("currentPage", result.getCurrentPage());

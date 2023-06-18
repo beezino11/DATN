@@ -149,14 +149,14 @@ import java.util.List;
                 "FROM product " +
                 "INNER JOIN product_category " +
                 "ON product.id = product_category.product_id " +
-                "INNER JOIN product_certification " +
-                "ON product.id = product_certification.product_id " +
+//                "INNER JOIN product_certification " +
+//                "ON product.id = product_certification.product_id " +
                 "WHERE product.status = 1 AND product.brand_id IN (?1) AND product_category.category_id IN (?2) " +
-                "AND product_certification.certification_id IN (?3)" +
-                "AND product.sale_price >= ?4 AND product.sale_price <= ?5 " +
+//                "AND product_certification.certification_id IN (?3)" +
+                "AND product.sale_price >= ?3 AND product.sale_price <= ?4 " +
                 "AND product.expiry >= NOW() " +
-                "LIMIT ?6 " +
-                "OFFSET ?7"
+                "LIMIT ?5 " +
+                "OFFSET ?6"
 )
 @NamedNativeQuery(
         name = "searchProductByKeyword",
@@ -167,10 +167,10 @@ import java.util.List;
                 "ON p.id = pc.product_id " +
                 "INNER JOIN category c " +
                 "ON c.id = pc.category_id " +
-                "INNER JOIN product_certification p_ce " +
-                "ON p.id = p_ce.product_id " +
-                "INNER JOIN certification ce " +
-                "ON ce.id = p_ce.certification_id " +
+//                "INNER JOIN product_certification p_ce " +
+//                "ON p.id = p_ce.product_id " +
+//                "INNER JOIN certification ce " +
+//                "ON ce.id = p_ce.certification_id " +
                 "WHERE p.status = 1 AND (p.name LIKE CONCAT('%',:keyword,'%') OR c.name LIKE CONCAT('%',:keyword,'%') OR ce.name LIKE CONCAT('%',:keyword,'%')) " +
                 "AND p.expiry >= NOW() " +
                 "LIMIT :limit " +
@@ -241,13 +241,13 @@ public class Product {
     )
     private List<Category> categories;
 
-    @ManyToMany
-    @JoinTable(
-            name = "product_certification",
-            joinColumns =@JoinColumn(name = "product_id"),
-            inverseJoinColumns =@JoinColumn(name = "certification_id")
-    )
-    private List<Certification> certifications;
+//    @ManyToMany
+//    @JoinTable(
+//            name = "product_certification",
+//            joinColumns =@JoinColumn(name = "product_id"),
+//            inverseJoinColumns =@JoinColumn(name = "certification_id")
+//    )
+//    private List<Certification> certifications;
 
 //    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
 //    private List<CartProduct> cartProducts = new ArrayList<>();

@@ -135,22 +135,22 @@
                                                         </th:block>
                                                     </select>
                                                 </div>
-                                                <div class="form-group">
-                                                    <div>
-                                                        <label class="control-label text-lg-right pt-2">Chứng
-                                                            nhận sản phẩm
-                                                            <span
-                                                                    class="required">*</span></label>
-                                                    </div>
-                                                    <select multiple data-plugin-selectTwo
-                                                            class="form-control populate"
-                                                            name="certification[]" id="certification">
-                                                        <th:block th:each="certification : ${certifications}">
-                                                            <option th:value="${certification.id}"
-                                                                    th:text="${certification.name}"></option>
-                                                        </th:block>
-                                                    </select>
-                                                </div>
+<!--                                                <div class="form-group">-->
+<!--                                                    <div>-->
+<!--                                                        <label class="control-label text-lg-right pt-2">Chứng-->
+<!--                                                            nhận sản phẩm-->
+<!--                                                            <span-->
+<!--                                                                    class="required">*</span></label>-->
+<!--                                                    </div>-->
+<!--                                                    <select multiple data-plugin-selectTwo-->
+<!--                                                            class="form-control populate"-->
+<!--                                                            name="certification[]" id="certification">-->
+<!--                                                        <th:block th:each="certification : ${certifications}">-->
+<!--                                                            <option th:value="${certification.id}"-->
+<!--                                                                    th:text="${certification.name}"></option>-->
+<!--                                                        </th:block>-->
+<!--                                                    </select>-->
+<!--                                                </div>-->
                                                 <div class="form-group">
                                                     <div>
                                                         <label class="required-label" for="quantity">Nhập số lượng sản phẩm
@@ -360,25 +360,25 @@
             }
             initListImg(tmp);
         })
-        $(function () {
-            let certifications = [[${product.certifications}]];
-            for (certification of certifications) {
-                $('#certification option[value=' + certification.id + ']').attr('selected', 'selected');
-            }
-            $('#certification').trigger("change");
-            $('#description').summernote(
-                {
-                    height: 450,
-                    focus: true
-                }
-            )
-            let imgs = [[${images}]];
-            let tmp = [];
-            for (img of imgs) {
-                tmp.push({"grid-item-img": img})
-            }
-            initListImg(tmp);
-        })
+        // $(function () {
+        //     // let certifications = [[${product.certifications}]];
+        //     // for (certification of certifications) {
+        //     //     $('#certification option[value=' + certification.id + ']').attr('selected', 'selected');
+        //     // }
+        //     // $('#certification').trigger("change");
+        //     $('#description').summernote(
+        //         {
+        //             height: 450,
+        //             focus: true
+        //         }
+        //     )
+        //     let imgs = [[${images}]];
+        //     let tmp = [];
+        //     for (img of imgs) {
+        //         tmp.push({"grid-item-img": img})
+        //     }
+        //     initListImg(tmp);
+        // })
 
         $('#btn-upload-product-img').click(function () {
             $('#choose-img-modal').modal('show');
@@ -480,9 +480,9 @@
                 image: {
                     required: true,
                 },
-                certification: {
-                    required: true,
-                },
+                // certification: {
+                //     required: true,
+                // },
                 dateOfManufacture: {
                     required: true,
                 },
@@ -514,9 +514,9 @@
                 image: {
                     required: "Ảnh sản phẩm trống. Vui lòng chọn ảnh cho sản phẩm!",
                 },
-                certification: {
-                    required: "Chứng nhận sản phẩm trống. Vui lòng nhập chứng nhận cho sản phẩm!",
-                },
+                // certification: {
+                //     required: "Chứng nhận sản phẩm trống. Vui lòng nhập chứng nhận cho sản phẩm!",
+                // },
                 dateOfManufacture: {
                     required: "Ngày sản xuất sản phẩm trống. Vui lòng nhập ngày sản xuất cho sản phẩm!",
                 },
@@ -541,7 +541,7 @@
                 //     status = 1;
                 // }
                 let productImgs = [];
-                let certification = $("#certification").val();
+                // let certification = $("#certification").val();
                 let dateOfManufacture = $("#dateOfManufacture").val();
                 let expiry = $("#expiry").val();
                 let quantity = parseInt($("#quantity").val());
@@ -559,7 +559,7 @@
                     salePrice: salePrice,
                     product_images: productImgs,
                     status: status,
-                    certification_ids: certification,
+                    // certification_ids: certification,
                     dateOfManufacture: dateOfManufacture,
                     expiry: expiry,
                     quantity: quantity

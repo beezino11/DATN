@@ -108,21 +108,21 @@
                                                 </th:block>
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <div>
-                                                <label class="control-label text-lg-right pt-2" for="certification">Chứng
-                                                    nhận sản phẩm
-                                                    <span
-                                                            class="required">*</span></label>
-                                            </div>
-                                            <select multiple data-plugin-selectTwo class="form-control populate"
-                                                    name="certification[]" id="certification">
-                                                <th:block th:each="certification : ${certifications}">
-                                                    <option th:value="${certification.id}"
-                                                            th:text="${certification.name}"></option>
-                                                </th:block>
-                                            </select>
-                                        </div>
+<!--                                        <div class="form-group">-->
+<!--                                            <div>-->
+<!--                                                <label class="control-label text-lg-right pt-2" for="certification">Chứng-->
+<!--                                                    nhận sản phẩm-->
+<!--                                                    <span-->
+<!--                                                            class="required">*</span></label>-->
+<!--                                            </div>-->
+<!--                                            <select multiple data-plugin-selectTwo class="form-control populate"-->
+<!--                                                    name="certification[]" id="certification">-->
+<!--                                                <th:block th:each="certification : ${certifications}">-->
+<!--                                                    <option th:value="${certification.id}"-->
+<!--                                                            th:text="${certification.name}"></option>-->
+<!--                                                </th:block>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
                                         <div class="form-group">
                                             <div>
                                                 <label class="required-label" for="quantity">Nhập số lượng sản phẩm
@@ -263,9 +263,9 @@
                 category: {
                     required: true,
                 },
-                certification: {
-                    required: true,
-                },
+                // certification: {
+                //     required: true,
+                // },
                 quantity: {
                     required: true,
                 },
@@ -300,9 +300,9 @@
                 category: {
                     required: "Thể loại sản phẩm trống. Vui lòng nhập thể loại cho sản phẩm!",
                 },
-                certification: {
-                    required: "Chứng nhận sản phẩm trống. Vui lòng nhập chứng nhận cho sản phẩm!"
-                },
+                // certification: {
+                //     required: "Chứng nhận sản phẩm trống. Vui lòng nhập chứng nhận cho sản phẩm!"
+                // },
                 quantity: {
                     required: "Số lượng sản phẩm trống. Vui lòng nhập số lượng sản phẩm!",
                 },
@@ -329,7 +329,7 @@
                 let description = $("#description").val();
                 let brand = $("#brand").val();
                 let category = $("#category").val();
-                let certification = $("#certification").val();
+                // let certification = $("#certification").val();
                 let quantity = parseInt($("#quantity").val());
                 let price = parseInt($("#price").val());
                 let salePrice = parseInt($("#salePrice").val());
@@ -349,7 +349,7 @@
                     description: description,
                     brand_id: brand,
                     category_ids: category,
-                    certification_ids: certification,
+                    // certification_ids: certification,
                     quantity: quantity,
                     price: price,
                     salePrice: salePrice,

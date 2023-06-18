@@ -44,9 +44,9 @@ public class CreateProductRequest {
     @JsonProperty("category_ids")
     private ArrayList<Integer> categoryIds;
 
-    @NotNull(message = "Chứng nhận trống!")
-    @JsonProperty("certification_ids")
-    private ArrayList<Long> certification_ids;
+//    @NotNull(message = "Chứng nhận trống!")
+//    @JsonProperty("certification_ids")
+//    private ArrayList<Long> certification_ids;
 
     @Min(1000)
     @Max(1000000000)

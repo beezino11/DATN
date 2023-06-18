@@ -6,7 +6,6 @@ import com.wru.application.model.request.CreateProductRequest;
 import com.wru.application.config.CommonUtil;
 import com.wru.application.entity.Brand;
 import com.wru.application.entity.Category;
-import com.wru.application.entity.Certification;
 import com.wru.application.entity.Product;
 
 import java.util.ArrayList;
@@ -58,13 +57,13 @@ public class ProductMapper {
         }
         product.setCategories(categories);
 
-        ArrayList<Certification> certifications = new ArrayList<>();
-        for (Long id : createProductRequest.getCertification_ids()) {
-            Certification certification = new Certification();
-            certification.setId(id);
-            certifications.add(certification);
-        }
-        product.setCertifications(certifications);
+//        ArrayList<Certification> certifications = new ArrayList<>();
+//        for (Long id : createProductRequest.getCertification_ids()) {
+//            Certification certification = new Certification();
+//            certification.setId(id);
+//            certifications.add(certification);
+//        }
+//        product.setCertifications(certifications);
 
         return product;
     }
