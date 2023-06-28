@@ -56,7 +56,6 @@ public class ProductController {
                             @RequestParam(defaultValue = "", required = false) String id,
                             @RequestParam(defaultValue = "", required = false) String name,
                             @RequestParam(defaultValue = "", required = false) String category,
-                            @RequestParam(defaultValue = "", required = false) String certification,
                             @RequestParam(defaultValue = "", required = false) String brand,
                             @RequestParam(defaultValue = "1", required = false) Integer page) {
 

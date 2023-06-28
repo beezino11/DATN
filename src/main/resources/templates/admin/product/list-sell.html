@@ -102,14 +102,6 @@
                                 </th:block>
                             </select>
                         </th>
-                        <th>
-                            <select name="certification" class="form-control form-control search-select-certification" id="certification">
-                                <option value="">Tất cả</option>
-                                <th:block th:each="certification : ${certifications}">
-                                    <option th:value="${certification.id}" th:text="${certification.name}"></option>
-                                </th:block>
-                            </select>
-                        </th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -132,12 +124,6 @@
                             <th:block th:each="category,i : ${product.categories}">
                                 <span th:if="${i.first} == true" th:text="${category.name}"></span>
                                 <span th:if="${i.first} == false" th:text="', ' + ${category.name}"></span>
-                            </th:block>
-                        </td>
-                        <td>
-                            <th:block th:each="certification,i : ${product.certifications}">
-                                <span th:if="${i.first} == true" th:text="${certification.name}"></span>
-                                <span th:if="${i.first} == false" th:text="', ' + ${certification.name}"></span>
                             </th:block>
                         </td>
                         <td class="money" th:text="${product.price}"></td>

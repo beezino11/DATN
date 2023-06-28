@@ -4,7 +4,6 @@ import com.wru.application.model.dto.ChartDTO;
 import com.wru.application.model.dto.ProductInfoDTO;
 import com.wru.application.model.dto.ShortProductInfoDTO;
 import com.wru.application.entity.Product;
-//import com.vuhien.application.entity.ProductSize;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

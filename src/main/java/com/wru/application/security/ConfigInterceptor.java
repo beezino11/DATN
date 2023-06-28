@@ -22,7 +22,8 @@ public class ConfigInterceptor extends HandlerInterceptorAdapter {
             modelAndView.addObject("user_address", principal.getUser().getAddress());
             modelAndView.addObject("avatar", principal.getUser().getAvatar());
             modelAndView.addObject("isLogined", true);
-        } else {
+        }
+        else {
             modelAndView.addObject("isLogined", false);
         }
     }
